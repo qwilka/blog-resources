@@ -1,0 +1,8 @@
+https://qwilka.github.io/blog/2018/03/07/introducing_qwilka
+
+
+bibtex
+=======
+https://ctan.org/tex-archive/biblio/bibtex/contrib/urlbst?lang=en
+https://tex.stackexchange.com/questions/31865/latex-cant-find-my-bst-file-how-do-i-show-it-the-way
+https://tex.stackexchange.com/questions/170183/where-do-i-put-bst-files
