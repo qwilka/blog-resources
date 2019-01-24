@@ -88,7 +88,7 @@ function:
 	    print(f" c={c}") if c else print()
 	    return a + b + c
 
-and using the method :code:`Premise.plugin_func` to plug-in, or patch, the function ``adda`` 
+and using the method :code:`Premise.plugin_func` to plug-in (or "patch") the function ``adda`` 
 into our study tree nodes, and invoking ``adda`` on instance :code:`base`:
 
 .. code-block:: python
@@ -103,8 +103,29 @@ into our study tree nodes, and invoking ``adda`` on instance :code:`base`:
 
 :code:`base.adda() result=15`
 
-The default values for the function arguments can be over-ridden by explicitly
-specifying arguments when invoking the plug-in method:
+Method :code:`plugin_func` invokes a `pflacs` class called `Function` that
+wraps the plug-in function and binds it to the `Premise` node instance.
+The `Function` class uses Python's :code:`inspect.Signature` class 
+to determine the plug-in function's call signature, which includes
+names of the arguments that `adda` requires. When `adda` is invoked 
+on a `Premise` node,
+any argument that is not explicitly specified is 
+supplied from the node attribute with the same name. 
+If an attribute with the argument name is not found in the current node 
+instance, `pflacs` ascends the tree until it finds an ancestor node
+that has the required attribute, and applies its value as the
+required argument.
+
+So, argument values are applied in accordance with the following
+precedence order:
+
+#. argument explicitly specified in function call,
+#. node instance attribute,
+#. ancestor node attribute,
+#. original function default value.
+
+The follow examples use explicit arguments, node instance attribute
+values, and function default values:
 
 .. code-block:: python
 
@@ -132,8 +153,10 @@ To make things a bit more interesting, we will add more functionality:
 	    print(f" z={z}") if z else print()
 	    return x - y - z
 
-Inconveniently, the arguments of function ``subx`` do not correspond with the parameter
-names in our study, so we need to supply a mapping to indicate how the node attributes
+Inconveniently, the arguments of function ``subx`` do not correspond with 
+our adopted parameter
+naming scheme, so we need to supply a mapping to indicate how the node parameters/
+attributes
 should be applied to ``subx``. We will also introduce a new 
 parameter as instance attribute ``base.c``:
 
@@ -155,4 +178,72 @@ parameter as instance attribute ``base.c``:
 
 :code:`base.subx(b=99) = -95.5`
 
+We would now like to introduce a new load case, or parameter study, 
+so we instantiate a new `Premise` node with root node `base`
+as its parent:
 
+.. code-block:: python
+
+	lc1 = Premise("Load case 1", parent=base,
+				parameters={"a":100})
+	result = lc1.adda()
+	print(f"lc1.adda() result={result}")
+
+.. This code outputs: 
+
+:code:`«adda» w/args a=100 b=5 c=6.5`
+
+:code:`lc1.adda() result=111.5`
+
+Node «Load case 1» has its own attribute `a`
+and it applies the value :code:`lc1.a` as the first argument
+to `adda`. Node «Load case 1» inherits
+values for attributes :code:`lc1.b` and :code:`lc1.c`
+from its
+parent node `base`, and applies those values
+as `adda` arguments `b` and `c`  in the function call.
+
+`Premise` nodes do not automatically store the results of
+function calls, but we now introduce a new node
+class that does.  `pflacs.Calc` is a sub-class of `Premise`
+that has a defined :code:`__call__` method that invokes a specific 
+plug-in function. 
+
+.. code-block:: python
+
+	from pflacs import Calc
+	lc1_add = Calc("LC1 «adda()»", lc1, funcname="adda")
+	lc1_add()
+	print(f"lc1_add() result={lc1_add._adda}")
+
+.. This code outputs: 
+
+:code:`«adda» w/args a=100 b=5 c=6.5`
+
+:code:`lc1_add() result=111.5`
+
+The return value that results from executing the `Calc`
+node is assigned to a node attribute called :code:`_adda`.
+By default, this result attribute takes its name from the
+function, prefixed with an underscore to avoid a name-clash.
+The name of the return result attribute can be specified
+by adding an item with key 'return' to the argument mapping:
+
+.. code-block:: python
+
+	lc1_add = Calc("LC1 «adda()»", lc1, funcname="adda", 
+				argmap={"return":"adda_res"})
+	lc1_add(); print(lc1_add.adda_res)
+	df = lc1_add.to_dataframe(); print(df)
+
+.. This code outputs:
+
+:code:`111.5`
+
+:code:`.    a  b    c  adda_res`
+
+:code:`0  100  5  6.5     111.5`
+
+The :code:`Calc.to_dataframe` method creates a :code:`Pandas` 
+dataframe from
+the argument values and the function return value.
