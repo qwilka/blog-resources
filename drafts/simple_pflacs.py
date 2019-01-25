@@ -41,16 +41,44 @@ lc1 = Premise("Load case 1", parent=base,
 # print(f"lc1.adda() result={result}")
 
 from pflacs import Calc
-lc1_add = Calc("LC1 «adda()»", lc1, 
-                     funcname="adda")
-lc1_add()
-print(f"lc1_add() result={lc1_add._adda}")
+lc1_sub = Calc("LC1 «subx()»", lc1, funcname="subx")
+lc1_sub(); print(lc1_sub._subx)
+#print(f"lc1_sub() result={lc1_sub._subx}")
 
 lc1_add = Calc("LC1 «adda()»", lc1, funcname="adda", 
               argmap={"return":"adda_res"})
 lc1_add(); print(lc1_add.adda_res)
-# print(f"lc1_add() result={lc1_add.adda_res}")
-# print(f"lc1_add.adda_result={lc1_add.adda_res}")
 df = lc1_add.to_dataframe(); print(df)
 
+lc2 = base.add_child( lc1.copy() )
+lc2.name = "Load case 2"
+lc2.a = 200
+lc2_sub = lc2.get_child_by_name("LC1 «subx()»")
+lc2_sub.name = "LC2 «subx()»"
+lc2_add = lc2.get_child_by_name("LC1 «adda()»")
+lc2_add.name = "LC2 «adda()»"
+
+
+def multk(k:"a", l:"b", m:"c" = 1) -> "mult_res":
+    return k * l * m
+base.plugin_func(multk)
+result = base.multk()
+print(f"{base.a} * {base.b} * {base.c} = {result}")
+
+lc3_mul = Calc("LC3 «multk()»", base, funcname="multk")
+import numpy as np
+lc3_mul.b = np.linspace(0,10,3)
+lc3_mul()
+lc3_mul.to_dataframe()
+# print(f"{lc3_mul.a}*{lc3_mul.b}*{lc3_mul.c}={lc3_mul.mult_res}")
+
+for _n in base:
+    if type(_n) == Calc:
+        _n()
+
+base.savefile("simple_study.pflacs")
+
+for node in base:
+    if type(node) == Calc:
+        node.to_hdf5()
 

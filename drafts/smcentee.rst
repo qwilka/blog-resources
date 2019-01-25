@@ -212,18 +212,17 @@ plug-in function.
 .. code-block:: python
 
 	from pflacs import Calc
-	lc1_add = Calc("LC1 «adda()»", lc1, funcname="adda")
-	lc1_add()
-	print(f"lc1_add() result={lc1_add._adda}")
+	lc1_sub = Calc("LC1 «subx()»", lc1, funcname="subx")
+	lc1_sub(); print(lc1_sub._subx)
 
 .. This code outputs: 
 
-:code:`«adda» w/args a=100 b=5 c=6.5`
+:code:`«subx» w/args x=100 y=5 z=6.5`
 
-:code:`lc1_add() result=111.5`
+:code:`88.5`
 
-The return value that results from executing the `Calc`
-node is assigned to a node attribute called :code:`_adda`.
+The return value that results from executing the :code:`Calc`
+node is assigned to a node attribute called :code:`_subx`.
 By default, this result attribute takes its name from the
 function, prefixed with an underscore to avoid a name-clash.
 The name of the return result attribute can be specified
@@ -247,3 +246,136 @@ by adding an item with key 'return' to the argument mapping:
 The :code:`Calc.to_dataframe` method creates a :code:`Pandas` 
 dataframe from
 the argument values and the function return value.
+
+We would now like to create another study, similar to 
+"Load case 1". The easiest way to do this is to copy the branch
+we have already prepared, and make the necessary changes to the
+new branch. In this code block, we are using tree methods
+inherited from `vntree.Node`:
+
+.. code-block:: python
+
+	lc2 = base.add_child( lc1.copy() )
+	lc2.name = "Load case 2"
+	lc2.a = 200
+	lc2_sub = lc2.get_child_by_name("LC1 «subx()»")
+	lc2_sub.name = "LC2 «subx()»"
+	lc2_add = lc2.get_child_by_name("LC1 «adda()»")
+	lc2_add.name = "LC2 «adda()»"
+
+Let's add more functionality to our study. Again, we are plugging-in
+a function that has argument names that are inconsistent with our
+parameter naming scheme:
+
+.. code-block:: python
+
+	def multk(k:"a", l:"b", m:"c" = 1) -> "mult_res":
+		return k * l * m
+	base.plugin_func(multk)
+	result = base.multk()
+	print(f"{base.a} * {base.b} * {base.c} = {result}")
+
+.. This code outputs:
+
+:code:`10 * 5 * 6.5 = 325.0`
+
+Here, we are taking advantage of Python's function
+annotations to avoid having to explicitly specify an
+argument map for plug-in function :code:`multk`. 
+If we did not have access to the original function code,
+or if we wanted to use function annotations for 
+other purposes, we would define argument
+:code:`argmap={"k":"a", "l":"b", "m":"c", "return":"mult_res"}`
+when invoking method :code:`plugin_func` in this case.
+
+Let's add another :code:`Calc` node using :code:`multk`:
+
+.. code-block:: python
+
+	lc3_mul = Calc("LC3 «multk()»", base, funcname="multk")
+	import numpy as np
+	lc3_mul.b = np.linspace(0,10,3)
+	lc3_mul()
+	lc3_mul.to_dataframe()
+
+.. This code outputs:
+
+:code:`.   a     b    c  mult_res`
+
+:code:`0  10   0.0  6.5       0.0`
+
+:code:`1  10   5.0  6.5     325.0`
+
+:code:`2  10  10.0  6.5     650.0`
+
+Let's take a look at the tree structure of the study
+we have built:
+
+.. code-block:: python
+
+	print(base.to_texttree()) 
+
+.. This code outputs:
+
+:code:`|Base case`
+
+:code:`+--|Load case 1`
+
+:code:`.  +--|LC1 «subx()»`
+
+:code:`.  .  |LC1 «adda()»`
+
+:code:`.  |Load case 2`
+
+:code:`.  +--|LC2 «subx()»`
+
+:code:`.  .  |LC2 «adda()»`
+
+:code:`.  |LC3 «multk()»`
+
+A :code:`vntree.Node` instance is a generator, the whole
+tree, or a sub-tree, can be traversed simply by interating
+over the root node. In this example, the study tree is
+traversed top-down, and all the :code:`Calc` found are
+executed:
+
+.. code-block:: python
+
+	for node in base:
+		if type(node) == Calc:
+			node()
+
+Now that our study has been re-calculated, we will save it:
+
+.. code-block:: python
+
+	base.savefile("simple_study.pflacs")
+
+This saves the study tree in the Python :code:`pickle` format.
+To re-open the study, we would use the class method
+:code:` Premise.openfile`:
+
+.. code-block:: python
+
+	new_study = Premise.openfile("simple_study.pflacs")
+
+Using the :code:`pickle` format to persist `pflacs` trees is 
+convenient because it can easily serialize most common `Python`
+object types. However, we could be using `pflacs` to carry
+out large projects with many input parameters and calculation
+loadcases, in which case there would a lot of output data to save.
+In that case, `HDF5` is a more suitable format for saving the
+results dataframes in tables:
+
+.. code-block:: python
+
+	for node in base:
+		if type(node) == Calc:
+			node.to_hdf5()
+
+
+As you can see in Figures :ref:`fig1`
+
+.. figure:: hdf_viewer.png
+
+   This is the caption. :label:`fig1`
