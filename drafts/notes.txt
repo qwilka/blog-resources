@@ -6,3 +6,22 @@ bibtex
 https://ctan.org/tex-archive/biblio/bibtex/contrib/urlbst?lang=en
 https://tex.stackexchange.com/questions/31865/latex-cant-find-my-bst-file-how-do-i-show-it-the-way
 https://tex.stackexchange.com/questions/170183/where-do-i-put-bst-files
+
+
+SciPy
+=====
+https://conference.scipy.org/proceedings/
+https://www.scipy2019.scipy.org/talk-poster-presentations
+https://github.com/scipy-conference/scipy_proceedings  Tools used to generate the SciPy conference proceedings 
+
+
+
+The engineering design process (simplified)
+...........................................
+
+Typically, an engineering project will start by gathering relevant information
+and producing a *design basis* document, in the case where the client
+has a strong workscope specification,
+or a *design premise* document, in the case where determination of the input
+data specification is left to the engineering contractor.
+

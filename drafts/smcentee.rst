@@ -43,14 +43,103 @@ Introduction
 
 .. TODO Outline engineering design process
 
+Reproducibility, data management and workflow management are currently 
+areas of considerable interest and activity
+in computational scientific research.
+Recent Scipy conferences have featured several interesting contributions
+addressing these issues 
+:cite:`vyas_ramasubramani-proc-scipy-2018`
+:cite:`joseph_hellerstein-proc-scipy-2017`
+:cite:`sacred`
+:cite:`christian_oxvig-proc-scipy-2016`
+:cite:`david_dotson-proc-scipy-2016`
+
+In the domains of civil and mechanical engineering analysis and design, 
+similar issues arise due to the significant component of
+computational work involved. There are however also some important
+differences when engineering computational work is compared with
+scientific research. 
+Engineering design is a very iterative process,
+and scheduling issues can be critical. 
+Often engineering workscopes are
+executed in parallel in order to maintain project schedules,
+even when a serial, or waterfall, workflow might be more appropriate.
+This can mean that work commences with incomplete information,
+requiring assumptions to made in the design basis. 
+As the project progress, more information usually becomes available, 
+and also issues inevitably arise, which
+can result in changes to the design basis.  
+This leads to frequent re-work being required, and since the engineering
+design process is still very manual and hands-on, re-work can be
+a significant burden in terms of cost and schedule delay.
+
+A historical note
+..................
+
+In the 1990s cheap personal computers had become powerful enough to
+replace the previously more powerful and significantly more expensive
+class of computers known as engineering "workstations".  
+Where previously engineers
+had only restricted computer access for computational work, and 
+relied on secretaries for typing reports, it became normal for each individual
+engineer to have their own desktop computer. 
+Before the advent of the personal computer, engineering design
+was a mostly manual process, based on paper calculation pads, 
+and engineers tended to favour simpler calculations, ostensibly
+because simpler engineering theory was considered to be more
+robust and conservative. However, the fact that most computational 
+work was manual may also have been an important factor, since there is
+a significant cost penalty associated with increasing computational
+complexity when calculations are carried out by hand
+on account of the additional "manhours" required, 
+particularly when re-work is required.   
+
+The arrival of the personal computer on the engineer's desk was considered
+at the time to be a great advancement in terms of productivity improvement, 
+augmentation of computational capability, and general improvement in 
+engineering quality.
+In reality however, the PC was not so much of a revolution
+in the engineering office, it was more of an evolution from paper to the
+desktop computer. Apart from the fact that the actual computational
+work was now being carried out by computer, the actual work practices
+and design processes remain much the same to this day. Granted that there 
+has been a significant increase in use of advanced computational technologies,
+like the finite element method, at the same time a lot of engineering
+design work continues to be based on the same well-understood, simpler
+engineering theory, except that now the caculations are carried out
+on electronic spreadsheets and "worksheets" that greatly resemble their
+paper predecessors. A time-and-motion study carried out on a junior
+engineer in most engineering design offices today would reveal that most of
+their time is spent manually entering data into computer programs, and manually
+copying-and-pasting the calculated results into word processors, and after that
+a great deal of time is spend manaully preparing over-formatted 
+"reports" that require
+constant adjustments to pass quality checks 
+(that are also still carried out manually.)
+
+This at least has been the author's experience in working 
+as a subsea pipeline engineer for more than
+20 years in the oil & gas industry. 
+In recent years however, a great change has come to this industry. 
+Since 2014 an unexpected and sustained reduction in the oil price has
+led to calls to reduce costs, but without compromising
+safety.  It is recognized that oil & gas has fallen behind other industries
+in terms of productivity and technology uptake, and that
+digitalization, adopting new technologies and changing the
+ways we work are widely regarded as means of achieving the goals
+of sustainably reducing costs without increasing risks.  
+
+
+
+Introducing pflacs
+-------------------------------
 
 ``pflacs`` is a pure Python module that facilitates parameter studies. 
-``pflacs`` is a simple Python tree.
+``pflacs`` is a simple Python tree :cite:`vntree`.
 ``pflacs`` provides a means of integrating input data with pure Python functions.
 ``pflacs`` is a tree data structure that operates in a hierarchical workflow that is
 reflective of typical engineering project structure.
 What differentiates pflacs is the way it uses Python dynamic programming and introspection.
-this is a test :cite:`vntree`
 
 
 Basic usage
@@ -247,7 +336,7 @@ The :code:`Calc.to_dataframe` method creates a :code:`Pandas`
 dataframe from
 the argument values and the function return value.
 
-We would now like to create another study, similar to 
+We would now like to create another parameter study, similar to 
 "Load case 1". The easiest way to do this is to copy the branch
 we have already prepared, and make the necessary changes to the
 new branch. In this code block, we are using tree methods
@@ -342,8 +431,8 @@ executed:
 .. code-block:: python
 
 	for node in base:
-		if type(node) == Calc:
-			node()
+	  if type(node) == Calc:
+	    node()
 
 Now that our study has been re-calculated, we will save it:
 
@@ -370,12 +459,12 @@ results dataframes in tables:
 .. code-block:: python
 
 	for node in base:
-		if type(node) == Calc:
-			node.to_hdf5()
+	  if type(node) == Calc:
+	    node.to_hdf5()
 
 
 As you can see in Figures :ref:`fig1`
 
 .. figure:: hdf_viewer.png
 
-   This is the caption. :label:`fig1`
+   Tables of study results in HDFview. :label:`fig1`
