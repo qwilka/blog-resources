@@ -16,21 +16,20 @@ pflacs: Faster load cases and parameter studies
    involving analysis of
    multiple load cases and parameter studies, with the aim of identifying 
    a combination of design parameters that yields an optimal design solution.
-   The design process typically involves large numbers
-   of parameters and design load cases that must be considered, 
-   and design methodolgies are
-   traditionally very manual and iterative. 
-   Recent developments in computer technologies are leading to
-   a growing trend in towards automation in engineering design.
+   Traditionally engineering design methodolgies have been
+   very manual and iterative, however  
+   recent developments in computer technologies are driving
+   a growing trend towards automation.
    This article presents ``pflacs``, an open-source Python package that takes
    advantage of Python's flexible dynamic nature and its introspection tools
    to provide an object-orientated framework for automating computational studies.
-   ``pflacs`` combines data and Python functions together in an object-orientated
+   ``pflacs`` binds data and Python functions together in an object-orientated
    fashion, and uses a tree data structure that is reflective of the hierarchical 
    structure of many design projects. The author has a background in the subsea
    oil & gas industry, and has applied  ``pflacs`` to automating the  design
    of subsea pipelines.  Although its origins are in engineering design, ``pflacs`` 
-   can be used to manage and automate 
+   can be used to manage and automate parameter study type analysis in
+   any domain.
 
 
 
@@ -40,8 +39,6 @@ pflacs: Faster load cases and parameter studies
 
 Introduction
 ------------
-
-.. TODO Outline engineering design process
 
 Reproducibility, data management and workflow management are currently 
 areas of considerable interest and activity
@@ -129,7 +126,7 @@ digitalization, adopting new technologies and changing the
 ways we work are widely regarded as means of achieving the goals
 of sustainably reducing costs without increasing risks.  
 
-
+.. TODO Outline engineering design process (?)
 
 Introducing pflacs
 -------------------------------
@@ -468,3 +465,9 @@ As you can see in Figures :ref:`fig1`
 .. figure:: hdf_viewer.png
 
    Tables of study results in HDFview. :label:`fig1`
+
+
+Engineering design example
+---------------------------
+
+TODO: describe use of pflacs for design of subsea pipeline.

@@ -25,3 +25,26 @@ has a strong workscope specification,
 or a *design premise* document, in the case where determination of the input
 data specification is left to the engineering contractor.
 
+The Short Summary
+==================
+Engineering design typically 
+has a significant computational component
+involving large numbers of input parameters and
+multiple load cases.
+Traditionally the engineering design process has been
+very manual and iterative, however  
+recent technological developments are driving
+a growing trend towards automation.
+This article presents ``pflacs``, an open-source Python package that takes
+advantage of Python's flexible dynamic nature and its introspection tools
+to provide an object-orientated framework for 
+managing and automating computational studies.
+``pflacs`` has been developed to expedite the design of
+subsea pipelines, but it could be employed to manage
+computational projects or parameter studies in any domain.
+
+
+
+``pflacs`` binds data and Python functions together in an object-orientated
+fashion, and uses a tree data structure that is reflective of the hierarchical 
+structure of many design projects.
