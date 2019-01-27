@@ -131,12 +131,96 @@ of sustainably reducing costs without increasing risks.
 Introducing pflacs
 -------------------------------
 
-``pflacs`` is a pure Python module that facilitates parameter studies. 
-``pflacs`` is a simple Python tree :cite:`vntree`.
-``pflacs`` provides a means of integrating input data with pure Python functions.
-``pflacs`` is a tree data structure that operates in a hierarchical workflow that is
-reflective of typical engineering project structure.
-What differentiates pflacs is the way it uses Python dynamic programming and introspection.
+``pflacs`` :cite:`pflacs` is a pure Python module 
+that has been developed to manage
+and expedite computational studies that are typically
+carried out as part of the engineering design process. 
+The inspiration for ``pflacs`` came from the author's work
+as a pipeline engineer in
+the subsea oil & gas industry :cite:`CDDsubsea`, where design and
+analysis work has tended to be an intensively manual and iterative 
+process.  The geometrical simplicity of pipelines, effectively 
+1-dimensional structures, means that it is comparatively 
+straightforward to parameterize, compartmentalize and automate
+their design.  That means that pipeline design is the ideal
+domain in which to demonstrate the capabilities and useage
+of ``pflacs``.
+
+Computational studies, whether in engineering design or scientific
+research or generally, tend to be hierarchical in structure, with
+an over-arching fundemental *base-case* study at the root of the
+project, and multiple, various *load cases* or *parameter studies*
+that explore variations on the *base-case*. This project 
+hierarchical structure is often exploited by computational 
+analysts by organizing study components in directories or folders
+in the computer file system.
+
+The limitions of using the computer file system to manage large
+computational projects quickly become evident, as it gets harder to
+maintain a consistent naming scheme for parameters and load cases,
+and other scaling issues arise as the project grows. Typically, 
+even the best organized analyist can quickly fall into an ad-hoc
+approach to managing data and work flows, and this makes it
+more difficult to resume work at a later point or for another
+analyst to take over the project workscope.
+
+The objective of ``pflacs`` is to address these issues in a 
+familiar ``Python`` computational environment. ``pflacs``
+inherits from a companion ``Python`` module called 
+``vntree`` :cite:`vntree`, and that makes ``pflacs`` a tree data
+structure. Study input parameters become attributes of
+the nodes in a ``pflacs`` tree, and when a node requires a
+parameter it can ascend the tree to find its value, if the
+parameter is not an attribute of that node. So effectively
+parameters can be inherited from higher levels in the tree structure.
+
+Computational functionality is added by *plugging-in* 
+(or *patching*) external ``Python`` functions, turning the 
+functions into class attributes, or methods, 
+that are available to all the nodes
+in the tree.  The plugged-in functions are bound to the 
+parameter attributes, and this means that it is not 
+necessary to explicity specify the function arguments when
+a function is invoked on a ``pflacs`` node. 
+If an argument is not specified in a function call,
+``pflacs`` will substitute the value of the parameter attribute 
+it finds with the same name as the required argument. Binding
+node parameter attributes to functions in this manner facilitates
+automation of computations.
+
+``pflacs`` achieves this by using the introspection tools provided
+by Python's ``inspect`` module.  Then an external function is
+plugged in, ``pflacs`` uses the ``inspect.Signature`` class
+to obtain the call signature of the function.  When the function
+is invoked on a ``pflacs`` node, the function call signature is used
+to match any unspecified arguments with the appropriate parameters.
+
+``pflacs`` is a lightweight and unopinionated environment,
+the only requirement is that the user adopts their
+own naming naming scheme for parameters, and maintains consistency
+with that scheme within the project.
+The idea behind this approach is to allow the user to re-use, 
+or re-purpose, existing code without the need to alter
+or adapt the original code.  There is no requirement to
+decorate or modify plug-in functions, which means that 
+external functions can continue to be used in their original 
+form as standalone code,
+or in another computational environment outside of ``pflacs``.
+The only restriction on this is that ``pflacs`` plugin functions
+must be pure Python code, due to the dependency on 
+``inspect.Signature`` which has this limitation. In order to 
+use ``pflacs`` with compiled libraries, like the functions in
+Python's built-in ``math`` module, the work-around would be to
+wrap the compiled function inside a Python wrapper function which
+can be accessed by ``inspect.Signature``.  
+
+We will now further explore the use and capabilities 
+of ``pflacs`` through two examples, first 
+a very simple study that showcases basic usage, and
+after that a real-life example is presented demonstrating
+the engineering design of a subsea pipeline using ``pflacs``.
+
+
 
 
 Basic usage
