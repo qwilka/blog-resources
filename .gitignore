@@ -2,6 +2,11 @@
 *.pflacs
 *.hdf5
 
+# R Bookdown
+.Rhistory
+_book/
+_bookdown_files/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
