@@ -1,3 +1,67 @@
+https://github.com/rstudio/bookdown
+https://www.earthdatascience.org/courses/earth-analytics/document-your-science/add-citations-to-rmarkdown-report/
+http://seankross.com/2016/11/17/How-to-Start-a-Bookdown-Book.html
+https://github.com/seankross/bookdown-start
+https://github.com/rstudio/bookdown/tree/master/inst/examples
+http://ntsblog.online/posts/setting-up-a-new-bookdown-project/
+https://github.com/pzhaonet/bookdownplus
+https://github.com/rubenfcasal/bookdown_intro
+https://github.com/slisovski/TheGeolocationManual
+
+https://github.com/apreshill/armed/
+https://arm.rbind.io/
+https://arm.rbind.io/slides/bookdown.html#1
+https://github.com/rstudio-education/arm-workshop-rsc2019
+
+https://bookdown.org/yihui/bookdown/usage.html
+bookdown::render_book("index.Rmd", "bookdown::gitbook")
+bookdown::render_book("index.Rmd", "bookdown::pdf_book")
 ```r
 bookdown::render_book('index.Rmd', 'all')
 ```
+
+
+---
+title: "test article1"
+author: "Stephen McEntee"
+date: "`r Sys.Date()`"
+documentclass: article
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
+output:
+  bookdown::gitbook: default
+  #bookdown::html_document2: default
+  #bookdown::pdf_book: default
+---
+
+
+_bookdown.yml
+=============
+book_filename: "bookdown-demo"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true
+
+
+_output.yml
+=============
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">A Minimal Book Example</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default
+

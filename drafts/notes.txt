@@ -1,0 +1,91 @@
+https://qwilka.github.io/blog/2018/03/07/introducing_qwilka
+
+
+bibtex
+=======
+https://ctan.org/tex-archive/biblio/bibtex/contrib/urlbst?lang=en
+https://tex.stackexchange.com/questions/31865/latex-cant-find-my-bst-file-how-do-i-show-it-the-way
+https://tex.stackexchange.com/questions/170183/where-do-i-put-bst-files
+
+
+SciPy
+=====
+https://conference.scipy.org/proceedings/
+https://www.scipy2019.scipy.org/talk-poster-presentations
+https://github.com/scipy-conference/scipy_proceedings  Tools used to generate the SciPy conference proceedings 
+
+
+
+The engineering design process (simplified)
+...........................................
+
+Typically, an engineering project will start by gathering relevant information
+and producing a *design basis* document, in the case where the client
+has a strong workscope specification,
+or a *design premise* document, in the case where determination of the input
+data specification is left to the engineering contractor.
+
+The Short Summary
+==================
+Engineering design typically 
+has a significant computational component
+involving large numbers of input parameters and
+multiple load cases.
+Traditionally the engineering design process has been
+very manual and iterative, however  
+recent technological developments are driving
+a growing trend towards automation.
+This article presents ``pflacs``, an open-source Python package that takes
+advantage of Python's flexible dynamic nature and its introspection tools
+to provide an object-orientated environment for 
+managing and automating computational studies.
+``pflacs`` has been developed to expedite the design of
+subsea pipelines, but it could be employed to manage
+computational projects or parameter studies in any domain.
+
+========================================================================
+abstract
+========
+The engineering design process has a significant computational component
+involving analysis of
+multiple load cases and parameter studies, with the aim of identifying 
+a combination of design parameters that yields an optimal design solution.
+Traditional civil and mechanical engineering design methodolgies have 
+tended to be very manual and iterative, however  
+recent developments in computer technologies are driving
+a growing trend towards automation.
+The proposed talk presents ``pflacs``, an open-source Python package that takes
+advantage of Python's flexible dynamic nature and its introspection tools
+to provide an object-orientated framework for automating computational studies.
+``pflacs`` binds data and Python functions together in an object-orientated
+fashion, and uses a tree data structure that is reflective of the hierarchical 
+structure of many design projects. The author has a background in the subsea
+oil & gas industry, and has applied  ``pflacs`` to automating the  design
+of subsea pipelines.  Although its origins are in engineering design, ``pflacs`` 
+can be used to manage and automate parameter study type analysis in
+any domain.
+
+========================================================================
+links
+
+https://www.linkedin.com/pulse/cost-design-data-subsea-stephen-mcentee
+https://qwilka.github.io/blog/2018/03/07/introducing_qwilka
+https://youtu.be/LgyBPAWDDU8
+https://www.linkedin.com/in/stephen-mcentee-51a187121
+https://github.com/qwilka
+
+
+========================================================================
+
+``pflacs`` binds data and Python functions together in an object-orientated
+fashion, and uses a tree data structure that is reflective of the hierarchical 
+structure of many design projects.
+
+
+``pflacs`` is a pure Python module that facilitates parameter studies. 
+``pflacs`` is a simple Python tree :cite:`vntree`.
+``pflacs`` provides a means of integrating input data with pure Python functions.
+``pflacs`` is a tree data structure that operates in a hierarchical workflow that is
+reflective of typical engineering project structure.
+What differentiates pflacs is the way it uses Python dynamic programming and introspection.
+

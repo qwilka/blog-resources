@@ -1,0 +1,38 @@
+# Introduction {#intro}
+
+Reproducibility, data management and workflow management are currently 
+areas of considerable interest and activity
+in computational scientific research.
+Recent articles have featured several interesting contributions
+addressing these issues 
+[@vyas_ramasubramani-proc-scipy-2018, @sacred]
+
+In the domains of civil and mechanical engineering analysis and design, similar issues arise due to the significant component of computational work involved. There are however also some important differences when engineering computational work is compared with scientific research. Engineering design is a very iterative process, and scheduling issues can be critical. 
+Often engineering workscopes are executed in parallel in order to maintain project schedules, even when a serial, or waterfall, workflow might be more appropriate.
+This can mean that work commences with incomplete information,
+requiring assumptions to made in the design basis. 
+As the project progress, more information usually becomes available, 
+and also issues inevitably arise, which can result in changes to the design basis. This leads to frequent re-work being required, and since the engineering design process is still very manual and hands-on, re-work can be a significant burden in terms of cost and schedule delay.
+
+## A historical note
+
+In the 1990s cheap personal computers had become powerful enough to
+replace the previously more powerful and significantly more expensive
+class of computers known as engineering "workstations".  
+Where previously engineers
+had only restricted computer access for computational work, and 
+relied on secretaries for typing reports, it became normal for each individual
+engineer to have their own desktop computer. 
+Before the advent of the personal computer, engineering design
+was a mostly manual process, based on paper calculation pads, 
+and engineers tended to favour simpler calculations, ostensibly
+because simpler engineering theory was considered to be more
+robust and conservative. However, the fact that most computational 
+work was manual may also have been an important factor, since there is
+a significant cost penalty associated with increasing computational
+complexity when calculations are carried out by hand
+on account of the additional "manhours" required, 
+particularly when re-work is required.   
+
+
+

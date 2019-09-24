@@ -1,0 +1,25 @@
+bookdown::gitbook:
+  css: [css/style.css]
+  config:
+    toc:
+      collapse: subsection
+      scroll_highlight: yes
+      before: |
+        <li><a href="./index.html">Introduction to <span style="font-variant:small-caps;">Pflacs</span></a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    edit: null
+    search: no
+    download: ["pdf"]
+    sharing:
+      twitter: yes
+      linkedin: yes
+      github: yes
+      facebook: no
+      all: no
+bookdown::pdf_book:
+  includes:
+    in_header: latex/preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: no

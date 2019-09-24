@@ -4,6 +4,11 @@
 
 # R Bookdown
 .Rhistory
+.RData
+.Rproj.user
+.DS_Store
+*.rds
+.Rapp.history
 _book/
 _bookdown_files/
 

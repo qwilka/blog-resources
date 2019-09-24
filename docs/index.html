@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Book</title>
-  <meta name="description" content="A Book" />
+  <title>Introduction to Pflacs: Faster load cases and parameter studies with Python</title>
+  <meta name="description" content="This is a test article describing PFLACS" />
   <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Book" />
+  <meta property="og:title" content="Introduction to Pflacs: Faster load cases and parameter studies with Python" />
   <meta property="og:type" content="book" />
   
   
-  
-  
+  <meta property="og:description" content="This is a test article describing PFLACS" />
+  <meta name="github-repo" content="qwilka/blog-resources" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Book" />
+  <meta name="twitter:title" content="Introduction to Pflacs: Faster load cases and parameter studies with Python" />
   
-  
+  <meta name="twitter:description" content="This is a test article describing PFLACS" />
   
 
 <meta name="author" content="Stephen McEntee" />
@@ -111,6 +111,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -123,10 +124,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li><a href="./index.html">Introduction to <span style="font-variant:small-caps;">Pflacs</span></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#a-historical-note"><i class="fa fa-check"></i><b>1.1</b> A historical note</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>2</b> Literature</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -136,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Book</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to <span class="smallcaps">Pflacs</span>: Faster load cases and parameter studies with Python</a>
           </h1>
         </div>
 
@@ -145,14 +157,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A Book</h1>
+<h1 class="title">Introduction to <span class="smallcaps">Pflacs</span>: Faster load cases and parameter studies with Python</h1>
 <p class="author"><em>Stephen McEntee</em></p>
+<p class="date"><em>Last edited on 2019-09-24</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p>In this book, we will introduce an interesting
-method.</p>
+<div id="abstract" class="section level2 unnumbered">
+<h2>Abstract</h2>
+<p>The engineering design process has a significant computational component involving analysis of multiple load cases and parameter studies, with the aim of identifying a combination of design parameters that yields an optimal design solution. Traditionally engineering design methodolgies have been very manual and iterative, however recent developments in computer technologies are driving a growing trend towards automation. This article presents <span class="smallcaps">Pflacs</span> an open-source Python package that takes advantage of Python’s flexible dynamic nature and its introspection tools to provide an object-orientated framework for automating computational studies.</p>
+<p><span class="smallcaps">Pflacs</span> binds data and Python functions together in an object-orientated fashion, and uses a tree data structure that is reflective of the hierarchical structure of many design projects. The author has a background in the subsea oil &amp; gas industry, and has applied <span class="smallcaps">Pflacs</span> to automating the design of subsea pipelines. Although its origins are in engineering design, <span class="smallcaps">Pflacs</span> can be used to manage and automate parameter study type analysis in any domain.</p>
+</div>
+<div id="about-the-author" class="section level2 unnumbered">
+<h2>About the Author</h2>
+<p>Stephen McEntee is a subsea engineer..</p>
 
+</div>
 </div>
             </section>
 
@@ -174,33 +194,32 @@ method.</p>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
-"github": false,
-"facebook": true,
+"github": true,
+"facebook": false,
 "twitter": true,
 "google": false,
-"linkedin": false,
+"linkedin": true,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": false
 },
 "fontsettings": {
 "theme": "white",
 "family": "sans",
 "size": 2
 },
-"edit": {
-"link": null,
-"text": null
-},
+"edit": null,
 "history": {
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["2019_SMcEntee_Introduction_PFLACS.pdf"],
 "toc": {
-"collapse": "subsection"
-}
+"collapse": "subsection",
+"scroll_highlight": true
+},
+"search": false
 });
 });
 </script>

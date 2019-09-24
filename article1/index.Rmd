@@ -1,15 +1,25 @@
 ---
-title: "A Book"
+title: "Introduction to [Pflacs]{.smallcaps}: Faster load cases and parameter studies with Python"
 author: "Stephen McEntee"
-site: bookdown::bookdown_site
-bibliography: [refs.bib]
-documentclass: book
-output:
-  bookdown::gitbook: default
-  #bookdown::pdf_book: default
+date: "Last edited on `r Sys.Date()`"
+description: "This is a test article describing PFLACS"
+github-repo: qwilka/blog-resources
+documentclass: article
+bibliography: [references.bib]
+biblio-style: apalike
+link-citations: yes
 ---
+
 
 # Preface {-}
 
-In this book, we will introduce an interesting
-method.
+
+## Abstract {-}
+
+The engineering design process has a significant computational component involving analysis of multiple load cases and parameter studies, with the aim of identifying a combination of design parameters that yields an optimal design solution. Traditionally engineering design methodolgies have been very manual and iterative, however recent developments in computer technologies are driving a growing trend towards automation. This article presents [Pflacs]{.smallcaps} an open-source Python package that takes advantage of Python's flexible dynamic nature and its introspection tools to provide an object-orientated framework for automating computational studies.
+
+[Pflacs]{.smallcaps} binds data and Python functions together in an object-orientated fashion, and uses a tree data structure that is reflective of the hierarchical structure of many design projects. The author has a background in the subsea oil & gas industry, and has applied  [Pflacs]{.smallcaps} to automating the  design of subsea pipelines.  Although its origins are in engineering design, [Pflacs]{.smallcaps} can be used to manage and automate parameter study type analysis in any domain.
+
+## About the Author {-}
+
+Stephen McEntee is a subsea engineer..
