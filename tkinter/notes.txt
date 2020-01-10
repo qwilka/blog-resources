@@ -1,0 +1,16 @@
+
+tutorials
+==========
+https://docs.python.org/3/library/tkinter.ttk.html
+https://tkdocs.com/tutorial/index.html
+
+
+treeview
+=======
+https://stackoverflow.com/questions/16746387/tkinter-treeview-widget
+
+
+menu
+====
+https://stackoverflow.com/questions/12014210/tkinter-app-adding-a-right-click-context-menu
+http://zetcode.com/tkinter/menustoolbars/
