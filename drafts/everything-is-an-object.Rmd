@@ -1,0 +1,150 @@
+---
+title: "Everything is an Object in Python"
+subtitle: "(well, almost everything)"
+author: "Stephen McEntee"
+institute: "PyCon Limerick 2020"
+date: "2020-02-29"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, metropolis, metropolis-fonts, custom.css]
+    nature:
+      titleSlideClass: [middle, left]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "4:3"
+    seal: true
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(knitr)
+```
+
+```{python, echo=FALSE, results='hide', engine.path='/usr/bin/python3'}
+```
+
+
+# "Everything is an object in Python"
+
+--
+
+[![Guido-first-class-everything](assets/2009_Guido_first-class-everything.png)](https://python-history.blogspot.com/2009/02/first-class-everything.html)
+
+
+--
+
+[![jeffknupp-everything-really-is-an-object-i-swear](assets/jeffknupp_everything-really-is-an-object.png)](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/)
+
+--
+
+[![w3schools_almost-everything-is-an-object](assets/w3schools_almost-everything-is-an-object.png)](https://www.w3schools.com/python/python_classes.asp)
+
+
+???
+
+### references
+
+1. https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/
+
+
+
+---
+
+# A Python variable name is
+
+a sort of container for values
+
+--
+
+a name with a binding to the object
+
+--
+
+a pointer
+
+--
+
+.large[`not and object`]
+
+
+--
+
+but variable names exist in Python nonetheless
+
+???
+
+
+
+### references
+
+---
+
+# A simple example
+
+.pull-left[
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+a = 1
+id(a)
+```
+{{content}}
+]
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+id(1)
+```
+{{content}}
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+a is 1
+```
+{{content}}
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+del a
+```
+{{content}}
+
+--
+
+```python
+>>> a is 1
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'a' is not defined
+```
+{{content}}
+
+--
+
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+id(1)
+```
+
+--
+
+.pull-right[
+testing
+]
+
+
+---
+class: middle, center, inverse, notitletop
+
+.large[https://qwilka.github.io/]
+
+
+
+???
+
+### references
+
+1. General references.
