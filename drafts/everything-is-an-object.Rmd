@@ -31,16 +31,16 @@ library(knitr)
 
 --
 
-[![Guido-first-class-everything](assets/2009_Guido_first-class-everything.png)](https://python-history.blogspot.com/2009/02/first-class-everything.html)
+[![Guido-first-class-everything](assets/2009_Guido_first-class-everything2.png)](https://python-history.blogspot.com/2009/02/first-class-everything.html)
 
 
 --
 
-[![jeffknupp-everything-really-is-an-object-i-swear](assets/jeffknupp_everything-really-is-an-object.png)](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/)
+[![jeffknupp-everything-really-is-an-object-i-swear](assets/jeffknupp_everything-really-is-an-object2.png)](https://jeffknupp.com/blog/2013/02/14/drastically-improve-your-python-understanding-pythons-execution-model/)
 
 --
 
-[![w3schools_almost-everything-is-an-object](assets/w3schools_almost-everything-is-an-object.png)](https://www.w3schools.com/python/python_classes.asp)
+[![w3schools_almost-everything-is-an-object](assets/w3schools_almost-everything-is-an-object2.png)](https://www.w3schools.com/python/python_classes.asp)
 
 
 ???
@@ -55,24 +55,28 @@ library(knitr)
 
 # A Python variable name is
 
-a sort of container for values
+\- "a sort of container for values"
 
 --
 
-a name with a binding to the object
+\- "a name with a binding to the object"
 
 --
 
-a pointer
+\- a reference to an object
 
 --
 
-.large[`not and object`]
+\- a pointer
+
+--
+
+\- .large[`not an object itself`]
 
 
 --
 
-but variable names exist in Python nonetheless
+\- but variable names are entities in Python nonetheless
 
 ???
 
@@ -86,23 +90,18 @@ but variable names exist in Python nonetheless
 
 .pull-left[
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-a = 1
+a = 3
+id(3)
 id(a)
 ```
 {{content}}
 ]
 
---
-
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-id(1)
-```
-{{content}}
 
 --
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-a is 1
+3 is a
 ```
 {{content}}
 
@@ -115,18 +114,15 @@ del a
 
 --
 
-```python
->>> a is 1
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-NameError: name 'a' is not defined
+```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, error=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
+3 is a
 ```
 {{content}}
 
 --
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-id(1)
+id(3)
 ```
 
 --
@@ -139,7 +135,7 @@ testing
 ---
 class: middle, center, inverse, notitletop
 
-.large[https://qwilka.github.io/]
+.large[https://qwilka.github.io/talk/2020-02-29_pycon_limerick/]
 
 
 
