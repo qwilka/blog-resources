@@ -91,8 +91,7 @@ library(knitr)
 .pull-left[
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
 a = 3
-id(3)
-id(a)
+3 is a
 ```
 {{content}}
 ]
@@ -101,7 +100,8 @@ id(a)
 --
 
 ```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-3 is a
+id(3)
+id(a)
 ```
 {{content}}
 
@@ -114,8 +114,11 @@ del a
 
 --
 
-```{python, collapse=TRUE, results='markup', comment="", prompt=TRUE, error=TRUE, R.options=list(prompt='>>> ', continue='>>> ')}
-3 is a
+```python
+>>> 3 is a
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'a' is not defined
 ```
 {{content}}
 
@@ -128,8 +131,57 @@ id(3)
 --
 
 .pull-right[
-testing
+Python silently substitutes objects for named variables and embedded references, making it appear as if the references are the objects they point to.
 ]
+
+
+---
+
+# Anything else?
+
+--
+
+\- .large[`Python statements are not objects`]
+
+--
+
+.pull-left[
+```python
+>>> type(del)
+  File "<stdin>", line 1
+    type(del)
+SyntaxError: invalid syntax
+```
+]
+
+.pull-right[
+```python
+>>> type(raise)
+  File "<stdin>", line 1
+    type(raise)
+SyntaxError: invalid syntax
+```
+]
+
+--
+
+```python
+>>> type(print)
+<class 'builtin_function_or_method'>
+```
+
+
+```python
+>>> import platform; platform.python_version()
+'2.7.17'
+>>> type(print)
+  File "<stdin>", line 1
+    type(print)
+SyntaxError: invalid syntax
+
+```
+
+
 
 
 ---
